@@ -8,4 +8,10 @@ connectDB();
 
 app.get("/", (req, res) => res.send("API Running"))
 
+// Define Routes
+app.use("/api/users", require("./routes/API/users"))
+app.use("/api/auth", require("./routes/API/auth"))
+app.use("/api/profile", require("./routes/API/profile"))
+app.use("/api/post", require("./routes/API/post"))
+
 app.listen(PORT, () => console.log(`Server Started on ${PORT}`))
