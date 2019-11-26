@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000;
 //DB Connection
 connectDB();
 
+// Init Middlewear
+app.use(express.json({ extended: false }))
+
 app.get("/", (req, res) => res.send("API Running"))
 
 // Define Routes
