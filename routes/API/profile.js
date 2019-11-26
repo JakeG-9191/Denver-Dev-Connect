@@ -92,6 +92,37 @@ async (req, res) => {
         console.log(err);
         res.status(500).send("Server Error");
     }
-})
+});
+
+// Get Api/Profile
+// Get all profiles
+// public
+router.get("/", async (req, res) => {
+    try {
+        const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+        res.json(profiles);
+    } catch (err) {
+        console.log(err.message)
+        res.status(500).send("Server Error")
+    }
+});
+
+// Get Api/Profile/user/:user_id
+// Get all profile by user ID
+// public
+router.get("/user/:user_id", async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.params.user_id }).populate("user", ["name", "avatar"]);
+
+        if(!profile) return res.status(400).json({ msg: "Profile Not Found"});
+        res.json(profile);
+    } catch (err) {
+        console.log(err.message);
+        if (err.kind == "ObjectID") {
+            return res.status(400).json({ msg: "Profile Not Found"});
+        }
+        res.status(500).send("Server Error")
+    }
+});
 
 module.exports = router;
