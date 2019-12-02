@@ -8,7 +8,7 @@ export const Alert = ({ alerts }) => alerts !== null && alerts.length > 0 && ale
     </div>
 ));
 
-Alert.PropTypes = {
+Alert.propTypes = {
     alerts: PropTypes.array.isRequired
 }
 
