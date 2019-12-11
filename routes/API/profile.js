@@ -23,7 +23,7 @@ router.get("/me", auth, async (req, res) => {
         }
         res.json(profile)
     } catch (err) {
-        console.loglog(err.message)
+        console.error(err.message)
         res.status(500).send("Server Error");
     }
 });
@@ -136,7 +136,7 @@ router.delete("/", auth, async (req, res) => {
 
         res.json({ msg: "User and Profile have been deleted " });
     } catch (err) {
-        console.log(err.message)
+        console.error(err.message)
         res.status(500).send("Server Error")
     }
 });
@@ -182,7 +182,7 @@ router.put("/experience", [auth, [
         await profile.save();
         res.json(profile);
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send("Server Error");
     }
 });
@@ -204,7 +204,7 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
         res.json(profile);
 
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send("Server Error");
     }
 });
@@ -251,7 +251,7 @@ router.put("/education", [auth, [
         await profile.save();
         res.json(profile);
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send("Server Error");
     }
 });
@@ -273,7 +273,7 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
         res.json(profile);
 
     } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
         res.status(500).send("Server Error");
     }
 });
@@ -298,7 +298,7 @@ router.get("/github/:username", (req, res) => {
             res.json(JSON.parse(body));
         })
     } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
         res.status(500).send("Server Error")
     }
 });
